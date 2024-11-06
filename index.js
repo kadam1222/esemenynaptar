@@ -1,10 +1,17 @@
-const d = new Date();
+const d = new Date("November 1, 2024");
 let ev = d.getFullYear();
 let honap = d.getMonth()+1;
+let mainap = d.getDay();
 let datum = document.getElementById("datum");
 datum.innerHTML= ev + ". " +honap+". hónap"
 
+const dmainap=new Date();
+let ma=dmainap.getDate();
+let mahonap=dmainap.getMonth();
+let maev=dmainap.getFullYear();
+
 let honaphossz=[31,28,31,30,31,30,31,31,30,31,30,31]
+let honapokneve=["January","February","March","April","May","June","July","August","September","November","December"];
 let fodiv=document.getElementById("fodiv");
 let napok_div=document.getElementById("napok")
 let napok=["H","K","Sze","Cs","P","Szo","V"]
@@ -27,7 +34,15 @@ elozo.addEventListener("click",function(){
         let jelenleg = document.createElement("button")
         jelenleg.innerText=i
         if(i==1){
-            jelenleg.id="elso"
+            const d2= new Date(ev,honap-1,1);
+            mainap= d2.getDay();
+            if(mainap==0){
+                jelenleg.style.gridColumnStart=7
+            }
+            else{
+                jelenleg.style.gridColumnStart=mainap
+            }
+            
         }
         nap.appendChild(jelenleg)
     }
@@ -47,20 +62,31 @@ kov.addEventListener("click",function(){
         let jelenleg = document.createElement("button")
         jelenleg.innerText=i
         if(i==1){
-            jelenleg.id="elso"
+            const d3= new Date(ev,honap-1,1);
+            mainap= d3.getDay();
+            if(mainap==0){
+                jelenleg.style.gridColumnStart=7
+            }
+            else{
+                jelenleg.style.gridColumnStart=mainap
+            }
         }
         nap.appendChild(jelenleg)
     }
     fodiv.appendChild(nap)
 })
 
+let kezdet = 5;
 let nap = document.createElement("div");
 nap.id="naplist"
 for(let i=1;i<31;i++){
     let jelenleg = document.createElement("button")
     jelenleg.innerText=i
     if(i==1){
-        jelenleg.id="elso"
+        jelenleg.style.gridColumnStart=mainap
+    }
+    if(i==ma && honap-1==mahonap && ev==maev){
+        jelenleg.style.backgroundColor="orange"
     }
     nap.appendChild(jelenleg)
 }
