@@ -44,6 +44,9 @@ elozo.addEventListener("click",function(){
             }
             
         }
+        if(i==ma && honap-1==mahonap && ev==maev){
+            jelenleg.style.backgroundColor="orange"
+        }
         nap.appendChild(jelenleg)
     }
     fodiv.appendChild(nap)
@@ -58,6 +61,7 @@ kov.addEventListener("click",function(){
     }
     datum.innerHTML= ev + ". " +honap+". hónap"
     nap.innerText="";
+    
     for(let i=1;i<honaphossz[honap-1]+1;i++){
         let jelenleg = document.createElement("button")
         jelenleg.innerText=i
@@ -70,6 +74,9 @@ kov.addEventListener("click",function(){
             else{
                 jelenleg.style.gridColumnStart=mainap
             }
+        }
+        if(i==ma && honap-1==mahonap && ev==maev){
+            jelenleg.style.backgroundColor="orange"
         }
         nap.appendChild(jelenleg)
     }
