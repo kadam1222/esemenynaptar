@@ -21,6 +21,21 @@ for(let i=0;i<7;i++){
     napok_div.appendChild(jelenleg)
 }
 
+let modal = document.getElementById("myModal");
+let span = document.getElementsByClassName("close")[0];
+let hozzaad = document.getElementById("hozzaad");
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
+
+
 let elozo= document.getElementById("elozo");
 elozo.addEventListener("click",function(){
     honap= honap-1;
@@ -47,6 +62,10 @@ elozo.addEventListener("click",function(){
         if(i==ma && honap-1==mahonap && ev==maev){
             jelenleg.style.backgroundColor="orange"
         }
+        jelenleg.addEventListener("click",function(){
+            modal.style.display = "block";
+            
+        })
         nap.appendChild(jelenleg)
     }
     fodiv.appendChild(nap)
@@ -78,6 +97,9 @@ kov.addEventListener("click",function(){
         if(i==ma && honap-1==mahonap && ev==maev){
             jelenleg.style.backgroundColor="orange"
         }
+        jelenleg.addEventListener("click",function(){
+            modal.style.display = "block";
+        })
         nap.appendChild(jelenleg)
     }
     fodiv.appendChild(nap)
@@ -95,6 +117,17 @@ for(let i=1;i<31;i++){
     if(i==ma && honap-1==mahonap && ev==maev){
         jelenleg.style.backgroundColor="orange"
     }
+    jelenleg.addEventListener("click",function(){
+        modal.style.display = "block";
+        hozzaad.onclick = function(){
+            let esemenynev = document.getElementById("esemenynev");
+            jelenleg.innerHTML=i + `<p>${esemenynev}</p>`
+            modal.style.display = "none";
+        }
+         
+    })
     nap.appendChild(jelenleg)
 }
 fodiv.appendChild(nap)
+
+
